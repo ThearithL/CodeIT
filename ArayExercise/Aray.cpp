@@ -1,6 +1,6 @@
 #include<iostream>
 #include<iomanip>
-#define RED   "\033[32m"
+#define GREEN   "\033[32m"
 #define BLUE  "\033[34m"
 #define RESET "\033[0m"
 using namespace std;
@@ -14,21 +14,21 @@ void Create()
     for(int i=0;i<Size_Employee;i++){
         cout<<"Enter NAME: ";cin>>Employee_Name[i];
         cout<<"Enter ID: ";cin>>Employee_ID[i];
-        cout<<"Enter Department:  ";cin>>Employee_Department[i];
+        cout<<"Enter Department: ";cin>>Employee_Department[i];
         cout<<"Enter Salary: ";cin>>Employee_Salary[i];
         cout<<"Enter Position: ";cin>>Employee_Position[i];
         cout<<"Enter Birthday: ";cin>>Employee_Birthday[i];
         cout<<"Enter Address: ";cin>>Employee_Address[i];
         cout<<"Enter Phone Number: ";cin>>Employee_Phone_Number[i];
         cout<<"Enter Email: ";cin>>Employee_Email[i];
-        cout<<"Enter Status: ";cin>>Employee_Status[i];
-        cout<<"Enter Level: ";cin>>Employee_Level[i];
-        cout<<"Enter Marital Status: ";cin>>Employee_Marital_Status[i];
+        cout<<"Enter Status(Active,Inactive): ";cin>>Employee_Status[i];
+        cout<<"Enter Level(Manager,Superviser,Employee): ";cin>>Employee_Level[i];
+        cout<<"Enter Marital Status(Single,Married,Divorced,Windowed): ";cin>>Employee_Marital_Status[i];
     }
 }
 void Display()
 {
-    cout<<"===================================================================================================================="<<endl; 
+    cout<<"============================================================================================================================================================================="<<endl; 
     cout<<left;
     cout << setw(10) << "NAME"
          << setw(10) << "ID"
@@ -43,7 +43,7 @@ void Display()
          << setw(10) << "LEVEL"
          << setw(10) << "MARITAL STATUS" 
         <<endl;
-    cout<<"===================================================================================================================="<<endl;
+    cout<<"============================================================================================================================================================================="<<endl;
     cout<<left;   
     for(int i=0;i<Size_Employee;i++){
         cout<<setw(10)<<Employee_Name[i]
@@ -60,7 +60,7 @@ void Display()
             <<setw(10)<<Employee_Marital_Status[i]
             <<endl;
     }
-    cout<<"===================================================================================================================="<<endl;
+    cout<<"============================================================================================================================================================================="<<endl;
 }
 void Search()
 {
@@ -71,7 +71,6 @@ void Search()
     cout<<"2.Search By Name."<<endl;
     cout<<"3.Search By Position."<<endl;
     cout<<"4.Search By Salary."<<endl;
-    cout<<"5.EXIT[0]"<<endl;
     cout<<"Please Choose Option:";cin>>options;
     switch(options)
     {
@@ -112,8 +111,8 @@ void Search()
                         cout<<"Address:"<<Employee_Address[i]<<endl;
                         cout<<"Phone Number:"<<Employee_Phone_Number[i]<<endl;
                         cout<<"Status:"<<Employee_Status[i]<<endl;
-                        cout<<"Level"<<Employee_Level[i]<<endl;
-                        cout<<""<<Employee_Marital_Status[i]<<endl;
+                        cout<<"Level:"<<Employee_Level[i]<<endl;
+                        cout<<"Marital Status:"<<Employee_Marital_Status[i]<<endl;
                         
                     }
                 }
@@ -222,8 +221,8 @@ void Sort()
             case 1 :
             {
                 cout<<"Choose For Sort"<<endl;
-                cout<<"1.[A-Z]"<<endl;
-                cout<<"2.[Z-A]"<<endl;
+                cout<<"1.NAME [A-Z] "<<endl;
+                cout<<"2.NAME [Z-A] "<<endl;
                 cout<<"Choose Enter Number For Choosing:";cin>>answer;
                  if(answer==1){
                     for(int i=0;i<Size_Employee;i++){
@@ -252,7 +251,8 @@ void Sort()
                         cout<<"Sort Complate!"<<endl;
                     }
                 }
-                 if(answer==2){
+                 if(answer==2)
+                {
                     for(int i=0;i<Size_Employee;i++){
                         for(int j=i+1;j<Size_Employee;j++){
                             if(Employee_Name[i]<Employee_Name[j]){
@@ -279,13 +279,13 @@ void Sort()
                         cout<<"Sort Complate!"<<endl;
                     }
                 }
-                    break;
+                break;
             }
          case 2 :
         {
             cout<<"Choose For Sort"<<endl;
-            cout<<"1.[0-100]"<<endl;
-            cout<<"2.[100-0]"<<endl;
+            cout<<"1.ID [0-100] "<<endl;
+            cout<<"2.ID [100-0] "<<endl;
             cout<<"Choose Enter Number For Choosing:";cin>>answer;
             if(answer==1)
             {
@@ -349,8 +349,8 @@ void Sort()
           case 3 :
         {
             cout<<"Choose For Sort"<<endl;
-            cout<<"1.[1-$$$]"<<endl;
-            cout<<"2.[$$$-1]"<<endl;
+            cout<<"1.SALARY [1-$$$] "<<endl;
+            cout<<"2.SALARY [$$$-1] "<<endl;
             cout<<"Choose Enter Number For Choosing:";cin>>answer;
             if(answer==1)
             {
@@ -414,12 +414,40 @@ void Sort()
             case 4 :
             {
                 cout<<"Choose For Sort"<<endl;
-                cout<<"1.Position"<<endl;
+                cout<<"1.Position [A-Z] "<<endl;
+                cout<<"2.Position [Z-A] "<<endl;
                 cout<<"Choose Enter Number For Choosing:";cin>>answer;
                 if(answer==1)
                 {
                     for(int i=0;i<Size_Employee;i++){
                         for(int j=i+1;j<Size_Employee;j++){
+                            if(Employee_Position[i]>Employee_Position[j]){
+                                swap(Employee_Name[i],Employee_Name[j]);
+                                swap(Employee_ID[i],Employee_ID[j]);
+                                swap(Employee_Department[i],Employee_Department[j]);
+                                swap(Employee_Salary[i],Employee_Salary[j]);
+                                swap(Employee_Position[i],Employee_Position[j]);
+                                swap(Employee_Birthday[i],Employee_Birthday[j]);
+                                swap(Employee_Address[i],Employee_Address[j]);
+                                swap(Employee_Phone_Number[i],Employee_Phone_Number[j]);
+                                swap(Employee_Email[i],Employee_Email[j]);
+                                swap(Employee_Status[i],Employee_Status[j]);
+                                swap(Employee_Level[i],Employee_Level[j]);
+                                swap(Employee_Marital_Status[i],Employee_Marital_Status[j]);
+                                check=true;
+                            }
+                        }
+                    }
+                    if(!check){
+                        cout<<"Sort Not Complate!"<<endl;
+                    }else{
+                        cout<<"Sort Complate!"<<endl;
+                    }
+                }
+                if(answer==2)
+                {
+                    for(int i=0;i<Size_Employee;i++){
+                        for(int j=i+1;j>Size_Employee;j++){
                             if(Employee_Position[i]>Employee_Position[j]){
                                 swap(Employee_Name[i],Employee_Name[j]);
                                 swap(Employee_ID[i],Employee_ID[j]);
@@ -452,7 +480,7 @@ int main()
     system("cls");
     int Menu;
     do{
-        cout<<BLUE<<"==================================[MENU]==================================="<<endl;
+        cout<<BLUE<<"====================================================================================[ MENU ]============================================================================================================="<<endl;
         cout<<"1.Create Employee."<<endl;
         cout<<"2.Display All Employee."<<endl;
         cout<<"3.Search Employee."<<endl;
@@ -465,7 +493,7 @@ int main()
         switch(Menu)
         {
             case 0 :{
-                cout<<RED<<"======================Exit The Program.========================="<<RESET<<endl;
+                cout<<GREEN<<"==========================================================================[ Exit The Program. ]======================================================================================================"<<RESET<<endl;
                 break;
             }
             case 1 :{
